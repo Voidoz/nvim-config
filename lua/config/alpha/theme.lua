@@ -1,13 +1,4 @@
-local default_terminal = {
-    type = "terminal",
-    command = nil,
-    width = 69,
-    height = 8,
-    opts = {
-        redraw = true,
-        window_config = {},
-    },
-}
+local theme = require('alpha.themes.dashboard')
 
 local default_header = {
     type = "text",
@@ -111,7 +102,7 @@ local buttons = {
 }
 
 local section = {
-    terminal = default_terminal,
+    terminal = theme.section.terminal,
     header = default_header,
     buttons = buttons,
     footer = footer,
