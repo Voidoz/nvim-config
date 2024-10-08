@@ -2,6 +2,7 @@ local lead = '<leader>f'
 
 return {
     'nvim-telescope/telescope.nvim',
+    enabled = require('config.vscode.enabled').never,
     lazy = false,
     branch = '0.1.x',
     dependencies = {
