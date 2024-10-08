@@ -2,6 +2,7 @@ local lead = '<leader>t'
 
 return {
     'akinsho/toggleterm.nvim',
+    enabled = require('config.vscode.enabled').never,
     lazy = true,
     version = "*",
     opts = {},

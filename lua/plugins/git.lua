@@ -1,5 +1,6 @@
 return {
 	"kdheepak/lazygit.nvim",
+    enabled = require('config.vscode.enabled').never,
 	cmd = {
 		"LazyGit",
 		"LazyGitConfig",

@@ -1,5 +1,6 @@
 return {
     'hrsh7th/nvim-cmp',
+    enabled = require('config.vscode.enabled').never,
     dependencies = {
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',

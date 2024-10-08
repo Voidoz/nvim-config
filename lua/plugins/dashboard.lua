@@ -1,5 +1,6 @@
 return {
     "goolord/alpha-nvim",
+    enabled = require('config.vscode.enabled').never,
     event = "VimEnter",
     dependencies = { { 'nvim-tree/nvim-web-devicons' } },
     config = function()

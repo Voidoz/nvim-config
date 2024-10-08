@@ -1,10 +1,12 @@
 return {
     {
         'rcarriga/nvim-notify',
+        enabled = require('config.vscode.enabled').never,
         version = '^3',
     },
     {
         'stevearc/dressing.nvim',
+        enabled = require('config.vscode.enabled').never,
         init = function()
             ---@diagnostic disable-next-line: duplicate-set-field
             vim.ui.select = function(...)
@@ -21,6 +23,7 @@ return {
     },
     {
         "folke/tokyonight.nvim",
+        enabled = require('config.vscode.enabled').never,
         lazy = false,
         priority = 1000,
         opts = {},

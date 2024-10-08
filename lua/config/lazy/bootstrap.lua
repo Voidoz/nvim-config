@@ -37,4 +37,6 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
-vim.notify = require('notify')
+if not vim.g.vscode then
+  vim.notify = require('notify')
+end
