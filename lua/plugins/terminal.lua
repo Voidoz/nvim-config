@@ -3,6 +3,7 @@ local lead = '<leader>t'
 return {
     'akinsho/toggleterm.nvim',
     lazy = true,
+    version = "*",
     opts = {},
     keys = {
         { lead, desc = 'Terminal' },
