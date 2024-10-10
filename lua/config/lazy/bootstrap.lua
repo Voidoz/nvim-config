@@ -24,6 +24,12 @@ vim.g.maplocalleader = "\\"
 vim.opt.termguicolors = true
 vim.opt.mousemoveevent = true
 
+vim.opt.nu = true
+vim.opt.rnu = true
+
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
@@ -39,4 +45,5 @@ require("lazy").setup({
 
 if not vim.g.vscode then
   vim.notify = require('notify')
+  vim.cmd[[colorscheme tokyonight]]
 end

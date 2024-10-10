@@ -4,14 +4,23 @@ return {
     config = function ()
         require('nvim-treesitter.configs').setup {
             ensure_installed = {
-                -- "dart",
+				"c",
+				"c_sharp",
+				"cmake",
+				"cpp",
+                "dart",
+				"markdown",
+				"markdown_inline",
+				"query",
+				"vim",
+				"vimdoc"
             },
-            -- auto_install = true,
+            auto_install = true,
             highlight = {
                 enable = true,
             },
             indent = {
-                -- enable = true,
+                enable = true,
             },
         }
     end

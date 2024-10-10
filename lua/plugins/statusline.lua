@@ -4,6 +4,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
         options = {
+	    theme = "tokyonight",
             disabled_filetypes = {
                 'alpha',
                 'oil',

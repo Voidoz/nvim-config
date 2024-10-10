@@ -1,6 +1,6 @@
 return {
     'akinsho/flutter-tools.nvim',
-    enabled = false,
+	enabled = false,
     dependencies = {
         'nvim-lua/plenary.nvim',
         'stevearc/dressing.nvim',

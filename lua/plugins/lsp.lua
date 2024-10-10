@@ -9,6 +9,12 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		enabled = require('config.vscode.enabled').never,
 		lazy = false,
+		opts = {
+			ensure_installed = {
+				"lua_ls",
+				"gopls",
+			},
+		},
 	},
     {
         'neovim/nvim-lspconfig',
@@ -88,6 +94,13 @@ return {
                         --   }
                         -- },
 					},
+				},
+			})
+
+			lsp_config.gopls.setup({
+				capabilities = capabilities,
+				settings = {
+					usePlaceholders = true,
 				},
 			})
 

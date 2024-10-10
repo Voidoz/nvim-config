@@ -6,6 +6,10 @@ return {
     config = function()
         require('alpha').setup(require('config.alpha.theme').config)
 
+		require('which-key').add({
+			{ '<leader>d', '<cmd>Alpha<CR>', desc = 'Open Dashboard' },
+		})
+
         -- open dashboard after closing lazy
         if vim.o.filetype == "lazy" then
             vim.api.nvim_create_autocmd("WinClosed", {

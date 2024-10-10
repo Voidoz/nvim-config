@@ -26,9 +26,8 @@ return {
         enabled = require('config.vscode.enabled').never,
         lazy = false,
         priority = 1000,
-        config = function ()
-            require('tokyonight').setup({})
-            vim.cmd[[colorscheme tokyonight-night]]
-        end,
+		config = function()
+			require('tokyonight').setup({ style = "night" })
+		end,
     },
 }
