@@ -9,12 +9,6 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		enabled = require('config.vscode.enabled').never,
 		lazy = false,
-		opts = {
-			ensure_installed = {
-				"lua_ls",
-				"gopls",
-			},
-		},
 	},
     {
         'neovim/nvim-lspconfig',
@@ -38,6 +32,8 @@ return {
             require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
+					-- "gopls",
+					-- "pylyzer",
 				},
 			})
 
@@ -102,6 +98,11 @@ return {
 				settings = {
 					usePlaceholders = true,
 				},
+			})
+
+			lsp_config.pylyzer.setup({
+				capabilities = capabilities,
+				settings = {},
 			})
 
             require("fidget").setup({})

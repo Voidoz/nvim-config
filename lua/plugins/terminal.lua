@@ -16,7 +16,7 @@ return {
 			{ lead .. 'v', '<cmd>ToggleTerm direction=vertical<CR>',   desc = 'Open Vertical'   },
 			{ lead .. 'h', '<cmd>ToggleTerm direction=horizontal<CR>', desc = 'Open Horizontal' },
 			{ lead .. 'n', '<cmd>ToggleTermSetName<CR>',               desc = 'Set Name'        },
-			{ lead .. 'f', '<cmd>TermSelect<CR>',                      desc = 'Find'            },
+			{ lead .. 's', '<cmd>TermSelect<CR>',                      desc = 'Select'          },
 		})
 	end,
 }
