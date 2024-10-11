@@ -1,50 +1,44 @@
 return {
-    'akinsho/flutter-tools.nvim',
-	enabled = false,
-    dependencies = {
-        'nvim-lua/plenary.nvim',
-        'stevearc/dressing.nvim',
-    },
-    config = function()
-        require('flutter-tools').setup {
-            -- (uncomment below line for windows only)
-            -- flutter_path = "home/flutter/bin/flutter.bat",
+	'akinsho/flutter-tools.nvim',
+	dependencies = {
+		'nvim-lua/plenary.nvim',
+		'stevearc/dressing.nvim',
+	},
+	config = function()
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            debugger = {
-                -- make these two params true to enable debug mode
-                enabled = false,
-                run_via_dap = false,
-                register_configurations = function(_)
-                    require("dap").adapters.dart = {
-                        type = "executable",
-                        command = vim.fn.stdpath("data") .. "/mason/bin/dart-debug-adapter",
-                        args = {"flutter"}
-                    }
+		local dartExcludedFolders = {
+			vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
+			vim.fn.expand("$HOME/.pub-cache"),
+			vim.fn.expand("/opt/homebrew/"),
+			vim.fn.expand("$HOME/tools/flutter/"),
+		}
 
-                    require("dap").configurations.dart = {
-                        {
-                            type = "dart",
-                            request = "launch",
-                            name = "Launch flutter",
-                            dartSdkPath = 'home/flutter/bin/cache/dart-sdk/',
-                            flutterSdkPath = "home/flutter",
-                            program = "${workspaceFolder}/lib/main.dart",
-                            cwd = "${workspaceFolder}",
-                        }
-                    }
-                    -- uncomment below line if you've launch.json file already in your vscode setup
-                    require("dap.ext.vscode").load_launchjs()
-                end,
-            },
-            dev_log = {
-                -- toggle it when you run without DAP
-                enabled = false,
-                open_cmd = "tabedit",
-            },
-            -- lsp = {
-            --     on_attach = require("lvim.lsp").common_on_attach,
-            --     capabilities = require("lvim.lsp").default_capabilities,
-            -- },
-        }
-    end,
+		require('flutter-tools').setup {
+			debugger = {
+				enabled = true,
+				register_configurations = function(_)
+					require("dap.ext.vscode").load_launchjs()
+				end,
+			},
+			lsp = {
+				capabilities = capabilities,
+				on_attach = function(client, bufnr)
+					local ec_max_line_len = vim.o.textwidth
+					if (ec_max_line_len > 0) then
+						client.config.settings.dart.lineLength = ec_max_line_len
+					end
+
+					require('lsp-format').on_attach(client, bufnr)
+				end,
+				settings = {
+					analysisExcludedFolders = dartExcludedFolders,
+					updateImportsOnRename = true,
+					completeFunctionCalls = true,
+					showTodos = true,
+					enableSnippets = true,
+				},
+			},
+		}
+	end,
 }
