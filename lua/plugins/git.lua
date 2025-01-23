@@ -1,6 +1,6 @@
 return {
 	"kdheepak/lazygit.nvim",
-    enabled = require('config.vscode.enabled').never,
+	enabled = require('config.vscode.enabled').never,
 	cmd = {
 		"LazyGit",
 		"LazyGitConfig",
@@ -12,11 +12,8 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
-	config = function()
-		local wk = require('which-key')
-		wk.add({
-			{ '<leader>l',                      desc = 'Lazy'    },
-			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-		})
+	init = function()
+		require('config.mappings').lazygit()
 	end,
+	config = true,
 }

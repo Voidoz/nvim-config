@@ -2,18 +2,18 @@ return {
 	{
 		"williamboman/mason.nvim",
 		enabled = require('config.vscode.enabled').never,
-		lazy = false,
+		lazy = true,
 		config = true,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		enabled = require('config.vscode.enabled').never,
-		lazy = false,
+		lazy = true,
 	},
 	{
 		'neovim/nvim-lspconfig',
 		enabled = require('config.vscode.enabled').never,
-		lazy = false,
+		event = 'VeryLazy',
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 
@@ -42,6 +42,25 @@ return {
 			})
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true
+			}
+
+			lsp_config.emmet_language_server.setup({
+				filetypes = {
+					"css",
+					"eruby",
+					"html",
+					"javascript",
+					"javascriptreact",
+					"less",
+					"sass",
+					"scss",
+					"pug",
+					"typescriptreact"
+				},
+			})
 
 			-- local dartExcludedFolders = {
 			-- 	vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
@@ -121,6 +140,8 @@ return {
 				capabilities = capabilities,
 				settings = {},
 			})
+
+			lsp_config.templ.setup({})
 
 			require("fidget").setup({})
 		end

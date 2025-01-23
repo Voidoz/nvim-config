@@ -30,6 +30,8 @@ vim.opt.rnu = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 
+vim.filetype.add { extension = { gohtml = 'html', } }
+
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
