@@ -12,6 +12,7 @@ return {
 				"dart",
 				"markdown",
 				"markdown_inline",
+				"nu",
 				"query",
 				"vim",
 				"vimdoc"
