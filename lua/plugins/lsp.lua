@@ -29,7 +29,6 @@ return {
 			'lukas-reineke/lsp-format.nvim',
 		},
 		config = function()
-			local lsp_config = require('lspconfig')
 			local lsp_format = require('lsp-format')
 
 			require("mason").setup()
@@ -47,7 +46,7 @@ return {
 				lineFoldingOnly = true
 			}
 
-			lsp_config.emmet_language_server.setup({
+			vim.lsp.config("emmet_language_server", {
 				filetypes = {
 					"css",
 					"eruby",
@@ -69,7 +68,7 @@ return {
 			-- 	vim.fn.expand("$HOME/tools/flutter/"),
 			-- }
 			--
-			-- lsp_config.dartls.setup({
+			-- vim.lsp.config("dartls", {
 			-- 	capabilities,
 			-- 	on_attach = function(client, bufnr)
 			-- 		local ec_max_line_len = vim.o.textwidth
@@ -102,7 +101,7 @@ return {
 			-- 	},
 			-- })
 
-			lsp_config.lua_ls.setup({
+			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 				on_attach = lsp_format.on_attach,
 				settings = {
@@ -125,7 +124,7 @@ return {
 				},
 			})
 
-			lsp_config.gopls.setup({
+			vim.lsp.config("gopls", {
 				capabilities = capabilities,
 				on_attach = lsp_format.on_attach,
 				settings = {
@@ -136,12 +135,12 @@ return {
 				},
 			})
 
-			lsp_config.pylyzer.setup({
+			vim.lsp.config("pylyzer", {
 				capabilities = capabilities,
 				settings = {},
 			})
 
-			lsp_config.templ.setup({})
+			vim.lsp.config("templ", {})
 
 			require("fidget").setup({})
 		end

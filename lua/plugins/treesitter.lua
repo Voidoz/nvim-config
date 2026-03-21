@@ -3,7 +3,7 @@ return {
 	enabled = require('config.vscode.enabled').never,
 	event = 'BufEnter',
 	config = function()
-		require('nvim-treesitter.configs').setup {
+		require('nvim-treesitter').setup {
 			ensure_installed = {
 				"c",
 				"c_sharp",
