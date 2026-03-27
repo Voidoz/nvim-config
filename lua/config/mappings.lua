@@ -11,7 +11,8 @@ local M = {}
 M.default = function()
 	wk.add({
 		{ '<leader>c',  group = 'Code' },
-		{ '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', desc = 'Action' },
+		{ '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',            desc = 'Action' },
+		{ '<leader>f',  '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', desc = 'Format' },
 	})
 end
 
@@ -58,12 +59,12 @@ end
 
 M.telescope = function()
 	wk.add({
-		{ '<leader>f',  group = 'Telescope' },
-		{ '<leader>ft', '<cmd>Telescope<CR>',            desc = 'All' },
-		{ '<leader>ff', '<cmd>Telescope find_files<CR>', desc = 'Files' },
-		{ '<leader>fd', '<cmd>Telescope fd<CR>',         desc = 'Directories' },
-		{ '<leader>fg', '<cmd>Telescope live_grep<CR>',  desc = 'Text' },
-		{ '<leader>fb', '<cmd>Telescope buffers<CR>',    desc = 'Buffers' },
+		{ '<leader>/',  group = 'Telescope' },
+		{ '<leader>/t', '<cmd>Telescope<CR>',            desc = 'All' },
+		{ '<leader>/f', '<cmd>Telescope find_files<CR>', desc = 'Files' },
+		{ '<leader>/d', '<cmd>Telescope fd<CR>',         desc = 'Directories' },
+		{ '<leader>/g', '<cmd>Telescope live_grep<CR>',  desc = 'Text' },
+		{ '<leader>/b', '<cmd>Telescope buffers<CR>',    desc = 'Buffers' },
 	})
 end
 

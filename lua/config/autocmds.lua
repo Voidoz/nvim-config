@@ -1,4 +1,6 @@
-vim.api.nvim_create_autocmd('FileType', {
+vim.api.nvim_create_autocmd('BufWritePre', {
 	pattern = { "dart" },
-	command = "setlocal tabstop=2",
+	callback = function()
+		vim.lsp.buf.format({ async = false })
+	end,
 })
