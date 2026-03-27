@@ -41,6 +41,23 @@ M.oil = function()
 	})
 end
 
+M.gitsigns = function()
+	local gs = require('gitsigns')
+	wk.add({
+		{ '<leader>g',  group = 'Git' },
+		{ '<leader>gb', gs.blame_line,        desc = 'Blame Line' },
+		{ '<leader>gB', gs.blame,             desc = 'Blame Buffer' },
+		{ '<leader>gp', gs.preview_hunk,      desc = 'Preview Hunk' },
+		{ '<leader>gs', gs.stage_hunk,        desc = 'Stage Hunk' },
+		{ '<leader>gr', gs.reset_hunk,        desc = 'Reset Hunk' },
+		{ '<leader>gS', gs.stage_buffer,      desc = 'Stage Buffer' },
+		{ '<leader>gu', gs.undo_stage_hunk,   desc = 'Undo Stage Hunk' },
+		{ '<leader>gd', gs.diffthis,          desc = 'Diff This' },
+		{ ']h',         gs.next_hunk,         desc = 'Next Hunk' },
+		{ '[h',         gs.prev_hunk,         desc = 'Prev Hunk' },
+	})
+end
+
 M.lazygit = function()
 	wk.add({
 		{ '<leader>l',  desc = 'Lazy' },
