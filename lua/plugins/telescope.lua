@@ -2,7 +2,7 @@ return {
 	'nvim-telescope/telescope.nvim',
 	enabled = require('config.vscode.enabled').never,
 	event = 'VeryLazy',
-	branch = '0.1.x',
+	branch = 'master',
 	dependencies = {
 		'nvim-lua/plenary.nvim',
 		'nvim-treesitter/nvim-treesitter',
