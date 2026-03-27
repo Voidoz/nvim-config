@@ -9,6 +9,7 @@ return {
 			ui = {
 				border = "rounded",
 			},
+			fvm = true,
 		})
 	end,
 }

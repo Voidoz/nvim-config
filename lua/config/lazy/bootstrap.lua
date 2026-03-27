@@ -21,6 +21,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.opt.exrc = true
+
 vim.opt.termguicolors = true
 vim.opt.mousemoveevent = true
 
