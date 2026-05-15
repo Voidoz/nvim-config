@@ -6,7 +6,6 @@ return {
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		opts = {
 			options = {
-				theme = "tokyonight",
 				disabled_filetypes = {
 					'alpha',
 					'oil',
@@ -23,9 +22,15 @@ return {
 		config = function()
 			local hl_attr = require('cokeline.hlgroups').get_hl_attr
 
-			local buf_color = function(buffer)
-				return buffer.is_focused and "TabLineSel" or "TabLine"
+			local function buf_color(buffer)
+				return buffer.is_focused and "PmenuSel" or "Pmenu"
 			end
+
+			local function tab_color(tabpage)
+				return tabpage.is_active and "PmenuSel" or "Pmenu"
+			end
+
+			local fill_hl = "TabLineFill"
 
 			require('cokeline').setup {
 				default_hl = {
@@ -33,17 +38,17 @@ return {
 					bg = buf_color,
 				},
 
+				fill_hl = fill_hl,
+
 				components = {
 					{
 						text = ' ',
-						bg = "TabLineFill",
+						bg = fill_hl,
 					},
 					{
 						text = '',
-						fg = function(buffer)
-							return hl_attr(buf_color(buffer), 'bg')
-						end,
-						bg = "TabLineFill",
+						fg = function(buffer) return hl_attr(buf_color(buffer), 'bg') end,
+						bg = fill_hl,
 					},
 					{
 						text = function(buffer) return buffer.devicon.icon .. ' ' end,
@@ -70,7 +75,7 @@ return {
 						fg = function(buffer)
 							return hl_attr(buf_color(buffer), 'bg')
 						end,
-						bg = "TabLineFill",
+						bg = fill_hl,
 					},
 				},
 
@@ -79,43 +84,23 @@ return {
 					components = {
 						{
 							text = '',
-							fg = function(tabpage)
-								return
-									tabpage.is_active
-									and hl_attr('TabLineSel', 'bg')
-									or hl_attr('TabLine', 'bg')
-							end,
-							bg = "TabLineFill",
+							fg = function(tabpage) hl_attr(tab_color(tabpage), 'bg') end,
+							bg = fill_hl,
 						},
 						{
 							text = function(tabpage) return 'Tab ' .. tabpage.number end,
 							bold = function(tabpage) return tabpage.is_active end,
-							fg = function(tabpage)
-								return
-									tabpage.is_active
-									and "TabLineSel"
-									or "TabLine"
-							end,
-							bg = function(tabpage)
-								return
-									tabpage.is_active
-									and 'TabLineSel'
-									or 'TabLine'
-							end,
+							fg = tab_color,
+							bg = function(tabpage) hl_attr(tab_color(tabpage), 'bg') end,
 						},
 						{
 							text = '',
-							fg = function(tabpage)
-								return
-									tabpage.is_active
-									and hl_attr('TabLineSel', 'bg')
-									or hl_attr('TabLine', 'bg')
-							end,
-							bg = "TabLineFill",
+							fg = function(tabpage) hl_attr(tab_color(tabpage), 'bg') end,
+							bg = fill_hl,
 						},
 						{
 							text = ' ',
-							bg = "TabLineFill",
+							bg = fill_hl,
 						},
 					},
 				},

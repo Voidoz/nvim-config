@@ -1,4 +1,4 @@
 return {
-	'NMAC427/guess-indent',
+	'NMAC427/guess-indent.nvim',
 	opts = {},
 }

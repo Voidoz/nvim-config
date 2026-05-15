@@ -39,7 +39,9 @@ require("lazy").setup({
 	spec = {
 		-- import your plugins
 		{ import = "plugins" },
+		{ import = "plugins/qol" },
 		{ import = "plugins/tooling" },
+		{ import = "plugins/ui" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
@@ -51,5 +53,5 @@ require("lazy").setup({
 
 if not vim.g.vscode then
 	vim.notify = require('notify')
-	vim.cmd [[colorscheme catppuccin]]
+	vim.cmd [[colorscheme catppuccin-nvim]]
 end
