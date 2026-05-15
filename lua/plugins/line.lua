@@ -21,29 +21,29 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
-			local get_hex = require('cokeline.hlgroups').get_hl_attr
+			local hl_attr = require('cokeline.hlgroups').get_hl_attr
 
-			local green = vim.g.terminal_color_2
-			local yellow = vim.g.terminal_color_3
+			local buf_color = function(buffer)
+				return buffer.is_focused and "TabLineSel" or "TabLine"
+			end
 
 			require('cokeline').setup {
 				default_hl = {
-					fg = function(buffer)
-						return
-							buffer.is_focused
-							and get_hex('Normal', 'fg')
-							or get_hex('Comment', 'fg')
-					end,
-					bg = get_hex('ColorColumn', 'bg'),
+					fg = buf_color,
+					bg = buf_color,
 				},
 
 				components = {
 					{
-						text = '｜',
+						text = ' ',
+						bg = "TabLineFill",
+					},
+					{
+						text = '',
 						fg = function(buffer)
-							return
-								buffer.is_modified and yellow or green
-						end
+							return hl_attr(buf_color(buffer), 'bg')
+						end,
+						bg = "TabLineFill",
 					},
 					{
 						text = function(buffer) return buffer.devicon.icon .. ' ' end,
@@ -54,7 +54,7 @@ return {
 					},
 					{
 						text = function(buffer) return buffer.unique_prefix end,
-						fg = get_hex('Comment', 'fg'),
+						fg = hl_attr('Comment', 'fg'),
 						italic = true,
 					},
 					{
@@ -62,7 +62,15 @@ return {
 						bold = function(buffer) return buffer.is_focused end,
 					},
 					{
-						text = ' ',
+						text = '󰅚',
+						delete_buffer_on_left_click = true,
+					},
+					{
+						text = '',
+						fg = function(buffer)
+							return hl_attr(buf_color(buffer), 'bg')
+						end,
+						bg = "TabLineFill",
 					},
 				},
 
@@ -70,10 +78,14 @@ return {
 					placement = 'right',
 					components = {
 						{
-							text = '｜',
-							fg = function()
-								return green
-							end
+							text = '',
+							fg = function(tabpage)
+								return
+									tabpage.is_active
+									and hl_attr('TabLineSel', 'bg')
+									or hl_attr('TabLine', 'bg')
+							end,
+							bg = "TabLineFill",
 						},
 						{
 							text = function(tabpage) return 'Tab ' .. tabpage.number end,
@@ -81,15 +93,30 @@ return {
 							fg = function(tabpage)
 								return
 									tabpage.is_active
-									and get_hex('Normal', 'fg')
-									or get_hex('Comment', 'fg')
+									and "TabLineSel"
+									or "TabLine"
 							end,
-							bg = get_hex('ColorColumn', 'bg'),
+							bg = function(tabpage)
+								return
+									tabpage.is_active
+									and 'TabLineSel'
+									or 'TabLine'
+							end,
+						},
+						{
+							text = '',
+							fg = function(tabpage)
+								return
+									tabpage.is_active
+									and hl_attr('TabLineSel', 'bg')
+									or hl_attr('TabLine', 'bg')
+							end,
+							bg = "TabLineFill",
 						},
 						{
 							text = ' ',
+							bg = "TabLineFill",
 						},
-
 					},
 				},
 			}
