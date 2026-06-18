@@ -8,7 +8,21 @@ return {
 			options = {
 				disabled_filetypes = {
 					'alpha',
-					'oil',
+				},
+				theme = 'auto',
+				component_separators = '|',
+				section_separators = { left = '', right = '' },
+			},
+			sections = {
+				lualine_a = {
+					{ 'mode', separator = { left = '' }, right_padding = 2 },
+				},
+				lualine_b = { 'filename', 'branch' },
+				lualine_c = { '%=', }, -- centers the middle components
+				lualine_x = {},
+				lualine_y = { 'filetype', 'progress' },
+				lualine_z = {
+					{ 'location', separator = { right = '' }, left_padding = 2 },
 				},
 			},
 		},
@@ -18,64 +32,86 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
+			"catppuccin/nvim",
 		},
 		config = function()
-			local hl_attr = require('cokeline.hlgroups').get_hl_attr
+			local palette     = require("catppuccin.palettes").get_palette()
 
-			local function buf_color(buffer)
-				return buffer.is_focused and "PmenuSel" or "Pmenu"
+			local fill_bg     = palette.mantle
+			local active_bg   = palette.surface1
+			local inactive_bg = palette.surface0
+			local inactive_fg = palette.subtext0
+			local accent_fg   = palette.lavender
+			local comment_fg  = palette.overlay1
+			local modified_fg = palette.yellow
+			local close_fg    = palette.red
+
+			vim.api.nvim_set_hl(0, "CokelineFill", { bg = fill_bg, fg = fill_bg })
+
+			local function buf_bg(buffer)
+				return buffer.is_focused and active_bg or inactive_bg
 			end
 
-			local function tab_color(tabpage)
-				return tabpage.is_active and "PmenuSel" or "Pmenu"
+			local function buf_fg(buffer)
+				return buffer.is_focused and palette.text or inactive_fg
 			end
 
-			local fill_hl = "TabLineFill"
+			local function tab_bg(tabpage)
+				return tabpage.is_active and active_bg or inactive_bg
+			end
 
 			require('cokeline').setup {
 				default_hl = {
-					fg = buf_color,
-					bg = buf_color,
+					fg = buf_fg,
+					bg = buf_bg,
 				},
 
-				fill_hl = fill_hl,
+				fill_hl = "CokelineFill",
 
 				components = {
 					{
-						text = ' ',
-						bg = fill_hl,
-					},
-					{
 						text = '',
-						fg = function(buffer) return hl_attr(buf_color(buffer), 'bg') end,
-						bg = fill_hl,
+						fg = buf_bg,
+						bg = fill_bg,
 					},
 					{
-						text = function(buffer) return buffer.devicon.icon .. ' ' end,
-						fg = function(buffer) return buffer.devicon.color end,
+						text = function(buffer) return ' ' .. buffer.devicon.icon end,
+						fg = function(buffer)
+							return buffer.is_focused and buffer.devicon.color or comment_fg
+						end,
 					},
 					{
-						text = function(buffer) return buffer.number .. ': ' end,
+						text = ' ',
 					},
 					{
 						text = function(buffer) return buffer.unique_prefix end,
-						fg = hl_attr('Comment', 'fg'),
+						fg = comment_fg,
 						italic = true,
 					},
 					{
-						text = function(buffer) return buffer.filename .. ' ' end,
+						text = function(buffer) return buffer.filename end,
 						bold = function(buffer) return buffer.is_focused end,
+						fg = function(buffer)
+							return buffer.is_focused and accent_fg or inactive_fg
+						end,
 					},
 					{
-						text = '󰅚',
+						text = ' ',
+					},
+					{
+						text = function(buffer)
+							return buffer.is_modified and '● ' or '󰅚 '
+						end,
+						fg = function(buffer)
+							if buffer.is_modified then return modified_fg end
+							return buffer.is_focused and close_fg or comment_fg
+						end,
 						delete_buffer_on_left_click = true,
 					},
 					{
 						text = '',
-						fg = function(buffer)
-							return hl_attr(buf_color(buffer), 'bg')
-						end,
-						bg = fill_hl,
+						fg = buf_bg,
+						bg = fill_bg,
 					},
 				},
 
@@ -84,23 +120,21 @@ return {
 					components = {
 						{
 							text = '',
-							fg = function(tabpage) hl_attr(tab_color(tabpage), 'bg') end,
-							bg = fill_hl,
+							fg = tab_bg,
+							bg = fill_bg,
 						},
 						{
-							text = function(tabpage) return 'Tab ' .. tabpage.number end,
+							text = function(tabpage) return ' 󰓩 ' .. tabpage.number .. ' ' end,
 							bold = function(tabpage) return tabpage.is_active end,
-							fg = tab_color,
-							bg = function(tabpage) hl_attr(tab_color(tabpage), 'bg') end,
+							fg = function(tabpage)
+								return tabpage.is_active and accent_fg or inactive_fg
+							end,
+							bg = tab_bg,
 						},
 						{
 							text = '',
-							fg = function(tabpage) hl_attr(tab_color(tabpage), 'bg') end,
-							bg = fill_hl,
-						},
-						{
-							text = ' ',
-							bg = fill_hl,
+							fg = tab_bg,
+							bg = fill_bg,
 						},
 					},
 				},
