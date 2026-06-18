@@ -70,6 +70,10 @@ return {
 
 				components = {
 					{
+						text = ' ',
+						bg = fill_bg,
+					},
+					{
 						text = '',
 						fg = buf_bg,
 						bg = fill_bg,
@@ -134,6 +138,10 @@ return {
 						{
 							text = '',
 							fg = tab_bg,
+							bg = fill_bg,
+						},
+						{
+							text = ' ',
 							bg = fill_bg,
 						},
 					},
