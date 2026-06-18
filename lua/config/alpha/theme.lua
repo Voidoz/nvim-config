@@ -86,15 +86,16 @@ end
 local buttons = {
     type = "group",
     val = make_buttons({
-        { action = '<cmd>Telescope find_files<CR>', desc = 'Find File', icon = '', shortcut = 'f' },
-        { action = '<cmd>ene | startinsert<CR>',    desc = 'New File',  icon = '', shortcut = 'n' },
-        { action = '<cmd>SessionSearch<CR>', desc = 'Find Session', icon = '', shortcut = 's' },
-        { action = '<cmd>Telescope live_grep<CR>', desc = 'Find Text', icon = '', shortcut = 'g' },
-        -- TODO Config
-        { action = '<cmd>SessionRestore<CR>', desc = 'Restore Session', icon = '', shortcut = 'r' },
-        { action = '<cmd>LazyExtras<CR>', desc = 'Lazy Extras', icon = '', shortcut = 'x' },
-        { action = '<cmd>Lazy<CR>', desc = 'Lazy', icon = '󰒲', shortcut = 'l' },
-        { action = '<cmd>qa<CR>', desc = 'Quit', icon = '', shortcut = 'q' }
+        { action = '<cmd>Telescope find_files<CR>',  desc = 'Find File',     icon = '',        shortcut = 'f'  },
+        { action = '<cmd>ene | startinsert<CR>',     desc = 'New File',      icon = '',        shortcut = 'n'  },
+        { action = '<cmd>Telescope live_grep<CR>',   desc = 'Find Text',     icon = '',        shortcut = 'g'  },
+        { action = '<cmd>Oil<CR>',                   desc = 'File Explorer', icon = '',        shortcut = 'e'  },
+        { action = '<cmd>Neogit<CR>',                desc = 'Git',           icon = '',        shortcut = 'G'  },
+        { action = '<cmd>Telescope git_commits<CR>', desc = 'Git Log',       icon = '',        shortcut = 'gl' },
+        { action = '<cmd>Mason<CR>',                 desc = 'Mason',         icon = '',        shortcut = 'm'  },
+        { action = '<cmd>Trouble diagnostics<CR>',   desc = 'Diagnostics',   icon = '',        shortcut = 'd'  },
+        { action = '<cmd>Lazy<CR>',                  desc = 'Lazy',          icon = '󰒲',   shortcut = 'l'  },
+        { action = '<cmd>qa<CR>',                    desc = 'Quit',          icon = '',        shortcut = 'q'  },
     }),
     opts = {
         spacing = 1,
