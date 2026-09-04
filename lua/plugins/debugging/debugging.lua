@@ -1,7 +1,7 @@
 return {
 	{
 		'mfussenegger/nvim-dap',
-		enabled = require('config.vscode.enabled').never,
+		enabled = require('config.util').not_vscode,
 		event = 'VeryLazy',
 	},
 	{

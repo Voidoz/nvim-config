@@ -1,10 +1,10 @@
 return {
 	{
 		"lewis6991/gitsigns.nvim",
-		enabled = require('config.vscode.enabled').never,
+		enabled = require('config.util').not_vscode,
 		event = { "BufReadPre", "BufNewFile" },
 		init = function()
-			require('config.mappings').gitsigns()
+			require('config.keymaps').gitsigns()
 		end,
 		opts = {
 			signs = {
@@ -23,7 +23,7 @@ return {
 	},
 	{
 		"kdheepak/lazygit.nvim",
-		-- enabled = require('config.vscode.enabled').never,
+		-- enabled = require('config.util').not_vscode,
 		enabled = false,
 		cmd = {
 			"LazyGit",
@@ -37,7 +37,7 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		init = function()
-			require('config.mappings').lazygit()
+			require('config.keymaps').lazygit()
 		end,
 		config = true,
 	},

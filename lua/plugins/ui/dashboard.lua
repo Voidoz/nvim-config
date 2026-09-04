@@ -1,13 +1,13 @@
 return {
 	"goolord/alpha-nvim",
-	enabled = require('config.vscode.enabled').never,
+	enabled = require('config.util').not_vscode,
 	event = "VimEnter",
 	dependencies = { { 'nvim-tree/nvim-web-devicons' } },
 
 	config = function()
-		require('alpha').setup(require('config.alpha.theme').config)
+		require('alpha').setup(require('config.dashboard.theme').config)
 
-		-- require('config.mappings').alpha()
+		-- require('config.keymaps').alpha()
 
 		-- open dashboard after closing lazy
 		if vim.o.filetype == "lazy" then

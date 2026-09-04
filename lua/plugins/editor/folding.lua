@@ -8,7 +8,7 @@ return {
 		vim.o.foldlevelstart = 99
 		vim.o.foldenable = true
 
-		require('config.mappings').folding()
+		require('config.keymaps').folding()
 
 		require('ufo').setup()
 	end,

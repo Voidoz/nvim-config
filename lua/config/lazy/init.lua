@@ -15,33 +15,20 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
-vim.opt.exrc = true
-
-vim.opt.termguicolors = true
-vim.opt.mousemoveevent = true
-
-vim.opt.nu = true
-vim.opt.rnu = true
-
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 0
-
-vim.filetype.add { extension = { gohtml = 'html', } }
-
 -- Setup lazy.nvim
+-- lazy.nvim only imports the top-level *.lua files of a given module path
+-- (plus any subdirectory that has its own init.lua), so each plugin
+-- category directory under lua/plugins/ needs to be imported explicitly.
 require("lazy").setup({
 	spec = {
-		-- import your plugins
 		{ import = "plugins" },
-		{ import = "plugins/qol" },
-		{ import = "plugins/tooling" },
-		{ import = "plugins/ui" },
+		{ import = "plugins.editor" },
+		{ import = "plugins.completion" },
+		{ import = "plugins.lsp" },
+		{ import = "plugins.git" },
+		{ import = "plugins.debugging" },
+		{ import = "plugins.ui" },
+		{ import = "plugins.ui.colorscheme" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.

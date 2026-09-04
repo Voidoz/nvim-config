@@ -1,10 +1,5 @@
 local wk = require('which-key')
-
-local function cb(modname, fn)
-	return function()
-		require(modname)[fn]()
-	end
-end
+local cb = require('config.util').cb
 
 local M = {}
 

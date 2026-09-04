@@ -3,7 +3,7 @@ return {
 	enabled = false,
 	lazy = false,
 	init = function()
-		require('config.mappings').resession()
+		require('config.keymaps').resession()
 	end,
 	opts = {},
 }

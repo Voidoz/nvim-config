@@ -1,6 +1,6 @@
 return {
 	'hrsh7th/nvim-cmp',
-	enabled = require('config.vscode.enabled').never,
+	enabled = require('config.util').not_vscode,
 	event = 'InsertEnter',
 	dependencies = {
 		'hrsh7th/cmp-buffer',

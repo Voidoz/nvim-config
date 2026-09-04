@@ -1,18 +1,18 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		enabled = require('config.vscode.enabled').never,
+		enabled = require('config.util').not_vscode,
 		lazy = true,
 		config = true,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		enabled = require('config.vscode.enabled').never,
+		enabled = require('config.util').not_vscode,
 		lazy = true,
 	},
 	{
 		'neovim/nvim-lspconfig',
-		enabled = require('config.vscode.enabled').never,
+		enabled = require('config.util').not_vscode,
 		event = 'VeryLazy',
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",

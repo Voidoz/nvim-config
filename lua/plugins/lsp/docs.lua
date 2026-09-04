@@ -3,7 +3,7 @@ return {
 	lazy = true,
 	cmd = "DocsViewToggle",
 	init = function()
-		require('config.mappings').docsview()
+		require('config.keymaps').docsview()
 	end,
 	opts = {
 		position = "bottom",

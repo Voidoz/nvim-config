@@ -1,6 +1,6 @@
 return {
 	'nvim-telescope/telescope.nvim',
-	enabled = require('config.vscode.enabled').never,
+	enabled = require('config.util').not_vscode,
 	event = 'VeryLazy',
 	branch = 'master',
 	dependencies = {
@@ -9,7 +9,7 @@ return {
 		'nvim-tree/nvim-web-devicons',
 	},
 	init = function()
-		require('config.mappings').telescope()
+		require('config.keymaps').telescope()
 	end,
 	config = function()
 		require('telescope').setup({})

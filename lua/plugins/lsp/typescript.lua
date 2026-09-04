@@ -1,6 +1,6 @@
 return {
 	"pmizio/typescript-tools.nvim",
-	enabled = require('config.vscode.enabled').never,
+	enabled = require('config.util').not_vscode,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"neovim/nvim-lspconfig",

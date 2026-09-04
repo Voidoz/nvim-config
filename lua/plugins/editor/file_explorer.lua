@@ -15,7 +15,7 @@ return {
 	lazy = false,
 	dependencies = { { "echasnovski/mini.icons", opts = {} } },
 	init = function()
-		require('config.mappings').oil()
+		require('config.keymaps').oil()
 	end,
 	config = function()
 		require('oil').setup({

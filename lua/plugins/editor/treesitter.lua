@@ -1,6 +1,6 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
-	enabled = require('config.vscode.enabled').never,
+	enabled = require('config.util').not_vscode,
 	event = 'BufEnter',
 	config = function()
 		require('nvim-treesitter').setup {
