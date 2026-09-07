@@ -3,6 +3,13 @@ local cb = require('config.util').cb
 
 local M = {}
 
+M.cokeline = function()
+	wk.add({
+		{ '<S-Tab>', function() require('cokeline.mappings').by_step('focus', -1) end, desc = 'Previous buffer (Cokeline Order)', mode = { 'n' } },
+		{ '<Tab>',   function() require('cokeline.mappings').by_step('focus', 1) end,  desc = 'Next buffer (Cokeline Order)',     mode = { 'n' } },
+	})
+end
+
 M.default = function()
 	wk.add({
 		{ '<leader>c',  group = 'Code' },
@@ -40,16 +47,16 @@ M.gitsigns = function()
 	local gs = require('gitsigns')
 	wk.add({
 		{ '<leader>g',  group = 'Git' },
-		{ '<leader>gb', gs.blame_line,        desc = 'Blame Line' },
-		{ '<leader>gB', gs.blame,             desc = 'Blame Buffer' },
-		{ '<leader>gp', gs.preview_hunk,      desc = 'Preview Hunk' },
-		{ '<leader>gs', gs.stage_hunk,        desc = 'Stage Hunk' },
-		{ '<leader>gr', gs.reset_hunk,        desc = 'Reset Hunk' },
-		{ '<leader>gS', gs.stage_buffer,      desc = 'Stage Buffer' },
-		{ '<leader>gu', gs.undo_stage_hunk,   desc = 'Undo Stage Hunk' },
-		{ '<leader>gd', gs.diffthis,          desc = 'Diff This' },
-		{ ']h',         gs.next_hunk,         desc = 'Next Hunk' },
-		{ '[h',         gs.prev_hunk,         desc = 'Prev Hunk' },
+		{ '<leader>gb', gs.blame_line,      desc = 'Blame Line' },
+		{ '<leader>gB', gs.blame,           desc = 'Blame Buffer' },
+		{ '<leader>gp', gs.preview_hunk,    desc = 'Preview Hunk' },
+		{ '<leader>gs', gs.stage_hunk,      desc = 'Stage Hunk' },
+		{ '<leader>gr', gs.reset_hunk,      desc = 'Reset Hunk' },
+		{ '<leader>gS', gs.stage_buffer,    desc = 'Stage Buffer' },
+		{ '<leader>gu', gs.undo_stage_hunk, desc = 'Undo Stage Hunk' },
+		{ '<leader>gd', gs.diffthis,        desc = 'Diff This' },
+		{ ']h',         gs.next_hunk,       desc = 'Next Hunk' },
+		{ '[h',         gs.prev_hunk,       desc = 'Prev Hunk' },
 	})
 end
 

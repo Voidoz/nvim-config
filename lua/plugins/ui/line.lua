@@ -147,6 +147,8 @@ return {
 					},
 				},
 			}
+
+			require('config.keymaps').cokeline()
 		end,
 	},
 }
