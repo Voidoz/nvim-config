@@ -46,6 +46,11 @@ return {
 				lineFoldingOnly = true
 			}
 
+			vim.lsp.config('*', {
+				capabilities = capabilities,
+				on_attach = lsp_format.on_attach,
+			})
+
 			vim.lsp.config("emmet_language_server", {
 				filetypes = {
 					"css",
