@@ -35,8 +35,6 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
-					-- "gopls",
-					-- "pylyzer",
 				},
 			})
 
@@ -66,45 +64,15 @@ return {
 				},
 			})
 
-			-- local dartExcludedFolders = {
-			-- 	vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
-			-- 	vim.fn.expand("$HOME/.pub-cache"),
-			-- 	vim.fn.expand("/opt/homebrew/"),
-			-- 	vim.fn.expand("$HOME/tools/flutter/"),
-			-- }
-			--
-			-- vim.lsp.config("dartls", {
-			-- 	capabilities,
-			-- 	on_attach = function(client, bufnr)
-			-- 		local ec_max_line_len = vim.o.textwidth
-			-- 		if (ec_max_line_len > 0) then
-			-- 			client.config.settings.dart.lineLength = ec_max_line_len
-			-- 		end
-			--
-			-- 		lsp_format.on_attach(client, bufnr)
-			-- 	end,
-			-- 	cmd = {
-			-- 		"dart",
-			-- 		"language-server",
-			-- 		"--protocol=lsp",
-			-- 	},
-			-- 	filetypes = { "dart" },
-			-- 	init_options = {
-			-- 		onlyAnalyzeProjectsWithOpenFiles = false,
-			-- 		suggestFromUnimportedLibraries = true,
-			-- 		closingLabels = true,
-			-- 		outline = false,
-			-- 		flutterOutline = false,
-			-- 	},
-			-- 	settings = {
-			-- 		dart = {
-			-- 			analysisExcludedFolders = dartExcludedFolders,
-			-- 			updateImportsOnRename = true,
-			-- 			completeFunctionCalls = true,
-			-- 			showTodos = true,
-			-- 		},
-			-- 	},
-			-- })
+			vim.lsp.config("angularls", {
+				capabilities = capabilities,
+				on_attach = lsp_format.on_attach,
+				settings = {
+					angular = {
+						completeFunctionCalls = true,
+					},
+				},
+			})
 
 			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
